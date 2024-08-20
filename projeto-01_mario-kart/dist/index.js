@@ -15,12 +15,14 @@ class Main {
             let player = this.player;
             for (let i = 0; i < 4; i++) {
                 await new Promise(resolve => {
-                    if (i === 0)
-                        console.log("--".repeat(8));
+                    if (i === 0) {
+                        console.log(`\n 🏁🚨 Corrida entre ${player.getName()} e ${this.enemy.getName()} começando...\n`);
+                        console.log("--".repeat(8) + "\n");
+                    }
                     setTimeout(() => {
                         new Pista(player, this.enemy, (i + 1));
                         resolve();
-                        console.log("--".repeat(8));
+                        console.log("\n" + "--".repeat(8) + "\n");
                     }, 500);
                 });
             }
@@ -28,14 +30,15 @@ class Main {
             console.log(`${player.getName()}: ${player.getPontos()} ponto(s)`);
             console.log(`${this.enemy.getName()}: ${this.enemy.getPontos()} ponto(s)`);
             if (player.getPontos() > this.enemy.getPontos()) {
-                console.log(`${player.getName()} venceu a corrida! Parabéns!`);
+                console.log(`${player.getName()} venceu a corrida! Parabéns! 🏆`);
             }
             else if (player.getPontos() === this.enemy.getPontos()) {
                 console.log("Empate!");
             }
             else {
-                console.log("Você perdeu a corrida!");
+                console.log(`${this.enemy.getName()} venceu a corrida! Parabéns! 🏆`);
             }
+            console.log("\n" + "--".repeat(8) + "\n");
         }
     }
     async createForm() {

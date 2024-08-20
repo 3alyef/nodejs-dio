@@ -30,6 +30,9 @@ export default class Pista {
     showWinner(win) {
         console.log(`${win.getName()} marcou um ponto!`);
     }
+    logRollResult(characterName, block, value, characterValue, finalValue) {
+        console.log(`${characterName} rolou um dado de ${block} ${value} + ${characterValue} = ${finalValue}`);
+    }
     retaGame(round) {
         let vel1 = this.Dice.rollDice();
         let finalVel1 = vel1 + this.jogador1.getVelocidade();
@@ -37,8 +40,8 @@ export default class Pista {
         let finalVel2 = vel1 + this.jogador2.getVelocidade();
         console.log(`Rodada: ${round}`);
         console.log("Bloco: RETA");
-        console.log(`${this.jogador1.getName()} rolou um dado de velocidade ${vel1} + ${this.jogador1.getVelocidade()} = ${finalVel1}`);
-        console.log(`${this.jogador2.getName()} rolou um dado de velocidade ${vel2} + ${this.jogador2.getVelocidade()} = ${finalVel2}`);
+        this.logRollResult(this.jogador1.getName(), "velocidade", vel1, this.jogador1.getVelocidade(), finalVel1);
+        this.logRollResult(this.jogador2.getName(), "velocidade", vel2, this.jogador2.getVelocidade(), finalVel2);
         if (finalVel1 > finalVel2) {
             this.jogador1.setPontos(true, 1);
             this.showWinner(this.jogador1);
@@ -58,8 +61,8 @@ export default class Pista {
         let finalManb2 = manb2 + this.jogador2.getManobrabilidade();
         console.log(`Rodada: ${round}`);
         console.log("Bloco: CURVA");
-        console.log(`${this.jogador1.getName()} rolou um dado de manobridade ${manb1} + ${this.jogador1.getManobrabilidade()} = ${finalManb1}`);
-        console.log(`${this.jogador2.getName()} rolou um dado de velocidade ${manb2} + ${this.jogador2.getManobrabilidade()} = ${finalManb2}`);
+        this.logRollResult(this.jogador1.getName(), "manobridade", manb1, this.jogador1.getManobrabilidade(), finalManb1);
+        this.logRollResult(this.jogador2.getName(), "manobridade", manb2, this.jogador2.getManobrabilidade(), finalManb2);
         if (finalManb1 > finalManb2) {
             this.jogador1.setPontos(true, 1);
             this.showWinner(this.jogador1);
@@ -79,18 +82,19 @@ export default class Pista {
         let finalpower2 = power2 + this.jogador2.getPoder();
         console.log(`Rodada: ${round}`);
         console.log("Bloco: CONFRONTO");
-        console.log(`${this.jogador1.getName()} rolou um dado de poder ${power1} + ${this.jogador1.getPoder()} = ${finalpower1}`);
-        console.log(`${this.jogador2.getName()} rolou um dado de poder ${power2} + ${this.jogador2.getPoder()} = ${finalpower2}`);
+        console.log(`${this.jogador1.getName()} confrontou com ${this.jogador2.getName()}! 🥊`);
+        this.logRollResult(this.jogador1.getName(), "poder", power1, this.jogador1.getPoder(), finalpower1);
+        this.logRollResult(this.jogador2.getName(), "poder", power2, this.jogador2.getPoder(), finalpower2);
         if (finalpower1 > finalpower2) {
             this.jogador1.setPontos(true, 1);
-            console.log(`${this.jogador1.getName()} venceu o confronto! ${this.jogador2.getName()} perdeu 1 ponto!`);
+            console.log(`${this.jogador1.getName()} venceu o confronto! ${this.jogador2.getName()} perdeu 1 ponto 🐢`);
         }
         else if (finalpower1 === finalpower2) {
             return;
         }
         else {
             this.jogador2.setPontos(true, 1);
-            console.log(`${this.jogador2.getName()} venceu o confronto! ${this.jogador1.getName()} perdeu 1 ponto!`);
+            console.log(`${this.jogador2.getName()} venceu o confronto! ${this.jogador1.getName()} perdeu 1 ponto 🐢`);
         }
     }
 }
