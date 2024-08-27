@@ -1,28 +1,8 @@
 import prompt from 'prompt';
-import { qrcodePrompt, qrcodeType } from '../../prompts/prompt-qrcode.js';
-import qrcode from 'qrcode-terminal';
+import qrcodePrompt from '../../prompts/prompt-qrcode.js';
 
-function typeQRCode() {
-	return new Promise((resolve) => {
-		prompt.get(qrcodeType, (err, choose)=>{
-			resolve(choose.select);
-		})
-	})
-}
+import handleQRCode from "./handle-qr-code.js";
 
 export default async function createQRCode() {
-	prompt.get(qrcodePrompt, async (err, choose) => {
-		let link = choose.select;
-		if(link) {
-			let typeQR = await typeQRCode();
-			if(typeQR == 1) {
-				// Normal
-			} else if(typeQR == 2) {
-				// Terminal
-				console.log("\n");
-				qrcode.generate(link);
-				console.log("\n");
-			}
-		}
-	});
+	prompt.get(qrcodePrompt[0], handleQRCode);
 }
