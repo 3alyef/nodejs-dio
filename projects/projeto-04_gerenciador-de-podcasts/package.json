@@ -1,0 +1,21 @@
+{
+  "name": "projeto-04_gerenciador-de-podcasts",
+  "version": "1.0.0",
+  "main": "./dist/server.cjs",
+  "scripts": {
+    "dev": "tsx --env-file=.env.development src/server.ts",
+    "dev:watch": "tsx watch --env-file=.env.development ./src/server.ts",
+    "build": "tsup src",
+    "start": "npm run build && node --env-file=.env ./dist/server.js"
+  },
+  "keywords": [],
+  "author": "Alef A. Araujo",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "tsup": "^8.2.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  }
+}
